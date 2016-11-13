@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "BeforeRegister";
+}
+
+<!DOCTYPE html>
+
+<link href="~/css/BeforeRegister.css" rel="stylesheet" />
+<h2>BeforeRegister</h2>
+<br /><br /><br /><br /><br />
+@{
+    <a href="@Url.Action("Register", "Home")" class="page-scroll">
+        Register
+    </a>
+}
+
+    <div id="wrap">
+        <form>
+            <div class="left">
+                <select>
+                    <option value="Select Category">Select Category</option>
+                    <option value="Mode">Mode</option>
+                    <option value="Photograpger">Photograpger</option>
+                    <option value="Makeup Artist">Makeup Artist</option>
+                    <option value="Wardrobe">Wardrobe</option>
+                    <option value="Hair Stylist">Hair Stylist</option>
+                    <option value="Artist/Painter">Artist/Painter</option>
+                    <option value="Body Painter">Body Painter</option>
+                    <option value="Clothing Designer">Clothing Designer</option>
+                    <option value="Digital Artist">Digital Artist</option>
+                </select>
+                <input type="submit" value="GO">
+            </div>
+            
+          </form>
+        <form>
+            <div class="right">
+                <select>
+                    <option value="Select Category">Select Category</option>
+                    <option value="Modeling Agent">Modeling Agent</option>
+                    <option value="Casting Director">Casting Director</option>
+                    <option value="Employment Recruiter">Employment Recruiter</option>
+                    <option value="Brand Owner/Rep">Brand Owner/Rep</option>
+                    <option value="Film/Video Maker">Film/Video Maker</option>
+                    <option value="Musician">Musician</option>
+                    <option value="Event Promoter">Event Promoter</option>
+                    <option value="Publication">Publication</option>
+                    <option value="Ad/Mktg Agency">Ad/Mktg Agency</option>
+                    <option value="Photographer">Photographer</option>
+                </select>
+                <input type="submit" value="GO">
+            </div>
+           
+        </form>
+
+    </div>
+
+
+
+

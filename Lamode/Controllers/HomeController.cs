@@ -58,6 +58,14 @@ namespace Lamode.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult BeforeRegister()
+        {
+            return View();
+        }
+       
+
         [HttpGet]
         public ActionResult Register()
         {
