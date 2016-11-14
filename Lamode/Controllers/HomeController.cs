@@ -67,14 +67,15 @@ namespace Lamode.Controllers
        
 
         [HttpGet]
-        public ActionResult Register(string registeredPeople)
+        public ActionResult Register(string registeredPeople,string oneTwo)
         {
             ViewBag.registeredPeople = registeredPeople;
+            ViewBag.oneTwo = oneTwo;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisteredUser newUser)
+        public ActionResult Register(RegisteredUser newUser,string registeredPeople)
         {
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);

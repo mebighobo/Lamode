@@ -6,13 +6,14 @@
 
 <h2>Register</h2>
 <br />
-<h3>@ViewBag.registeredPeople</h3>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
+    <h3 name="registeredPeople">@ViewBag.registeredPeople</h3>
+
     <div class="form-horizontal">
         <h4>RegisteredUser</h4>
         <hr />

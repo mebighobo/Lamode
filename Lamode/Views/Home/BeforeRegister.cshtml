@@ -17,6 +17,7 @@
     <div id="wrap">
         <form action="Register" method="get">
             <div class="left">
+                
                 <select name="registeredPeople">
                     <option value="Select Category">Select Category</option>
                     <option value="Model">Mode</option>
@@ -29,12 +30,17 @@
                     <option value="Clothing Designer">Clothing Designer</option>
                     <option value="Digital Artist">Digital Artist</option>
                 </select>
-                <input type="submit" value="GO">
+                <select hidden name="oneTwo">
+                    <option value="1">1</option>
+                </select>
+                @*<input type="text" name="oneTwo" hidden value="1">*@
+                <input type="submit" value="GO" id="1">
             </div>
             
           </form>
         <form action="Register" method="get">
             <div class="right">
+                
                 <select name="registeredPeople">
                     <option value="Select Category">Select Category</option>
                     <option value="Modeling Agent">Modeling Agent</option>
@@ -48,13 +54,30 @@
                     <option value="Ad/Mktg Agency">Ad/Mktg Agency</option>
                     <option value="Photographer">Photographer</option>
                 </select>
-                <input type="submit" value="GO">
+                <select hidden name="oneTwo">
+                    <option value="2">2</option>                 
+                </select>
+                @*<input type="text" name="oneTwo" hidden value="2">*@
+                <input type="submit" value="GO" id="2">
             </div>
 
         </form>
 
     </div>
 
-
+@*<script>
+    window.onload = function () {
+        var oneTwo = 0;
+        var submit1 = document.getElementById("1");
+        submit1.onclick = function () {
+            oneTwo = 1;
+        }
+        var submit2 = document.getElementById("2");
+        submit2.onclick = function () {
+            oneTwo = 2;
+        }
+       
+    }
+</script>*@
 
 
