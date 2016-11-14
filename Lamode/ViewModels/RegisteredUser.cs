@@ -24,5 +24,14 @@ namespace Lamode.ViewModels
         [Display(Name = "Password Confirm")]
         [Compare("Password", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Month")]
+        public string MonthOfBirth { get; set; }
+        [Required]
+        [Display(Name = "Day")]
+        public int DayOfBirth { get; set; }
+        [Required]
+        [Display(Name = "Year")]
+        public int YearOfBirth { get; set; }
     }
 }

@@ -81,9 +81,11 @@ namespace Lamode.Controllers
             {
                 UserName = newUser.UserName,
                 Email = newUser.Email
+             //   Month = newUser.MonthOfBirth
+
             };
             IdentityResult result = manager.Create(identityUser, newUser.Password);
-
+            
             if (result.Succeeded)
             {
                 var authenticationManager
