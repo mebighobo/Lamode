@@ -67,8 +67,9 @@ namespace Lamode.Controllers
        
 
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register(string registeredPeople)
         {
+            ViewBag.registeredPeople = registeredPeople;
             return View();
         }
         [HttpPost]
@@ -81,10 +82,10 @@ namespace Lamode.Controllers
             {
                 UserName = newUser.UserName,
                 Email = newUser.Email
-             //   Month = newUser.MonthOfBirth
 
             };
             IdentityResult result = manager.Create(identityUser, newUser.Password);
+            lamodeEntities db = new lamodeEntities();
             
             if (result.Succeeded)
             {
