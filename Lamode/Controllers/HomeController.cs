@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Lamode.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace Lamode.Controllers
 {
@@ -77,17 +78,18 @@ namespace Lamode.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisteredUser newUser,string registeredPeople)
         {
+            ViewBag.registeredPeople = registeredPeople;
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
             var identityUser = new IdentityUser()
             {
                 UserName = newUser.UserName,
                 Email = newUser.Email
-
             };
+            
             IdentityResult result = manager.Create(identityUser, newUser.Password);
             lamodeEntities db = new lamodeEntities();
-            
+           
             if (result.Succeeded)
             {
                 var authenticationManager
@@ -97,6 +99,44 @@ namespace Lamode.Controllers
                 authenticationManager.SignIn(new AuthenticationProperties() { },
                                              userIdentity);
             }
+            var user = manager.Users.FirstOrDefault(u => u.UserName == newUser.UserName);
+            //for the rest of data from AspNetUser table
+            AdditionalUserInfo additionalUserInfo = new AdditionalUserInfo();
+            additionalUserInfo.Id = user.Id;
+            additionalUserInfo.Bust = newUser.Bust;
+            additionalUserInfo.ColorEyes = newUser.ColorEyes;
+            additionalUserInfo.CompanyName = newUser.CompanyName;
+            additionalUserInfo.Cup = newUser.Cup;
+            additionalUserInfo.DateOfBirth = newUser.DateOfBirth;
+            additionalUserInfo.Dress = newUser.Dress;
+            additionalUserInfo.Experience = newUser.Experience;
+            additionalUserInfo.Height = newUser.Height;
+            additionalUserInfo.Hips = newUser.Hips;
+            additionalUserInfo.Nationality = newUser.Nationality;
+            additionalUserInfo.NudePhoto = newUser.NudePhoto;
+            additionalUserInfo.Shoe = newUser.Shoe;
+            additionalUserInfo.TellUsMore = newUser.TellUsMore;
+            additionalUserInfo.Waist = newUser.Waist;
+            additionalUserInfo.Website = newUser.Website;
+            additionalUserInfo.Weight = newUser.Weight;
+            additionalUserInfo.ZipCode = newUser.ZipCode;
+            
+            try
+            {
+                db.AdditionalUserInfoes.Add(additionalUserInfo);
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
+
             return View();
         }
         [Authorize]

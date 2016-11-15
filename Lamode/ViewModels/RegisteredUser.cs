@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lamode.ViewModels
 {
@@ -26,26 +27,26 @@ namespace Lamode.ViewModels
         public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name = "Date Of Birth")]
-        public string DateOfBirth { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
 
-        public decimal Height { get; set; }
-        public decimal Weight { get; set; }
+        public Nullable<decimal> Height { get; set; }
+        public Nullable<decimal> Weight { get; set; }
         public string ColorEyes { get; set; }
 
         [Display(Name = "Tell Us More")]
         public string TellUsMore { get; set; }
-        public bool Experience { get; set; }
+        public Nullable<bool> Experience { get; set; }
 
         [Display(Name = "Nude Photo")]
-        public bool NudePhoto { get; set; }
+        public Nullable<bool> NudePhoto { get; set; }
         public string Nationality { get; set; }
         public string ZipCode { get; set; }
-        public decimal Bust { get; set; }
-        public decimal Hips { get; set; }
-        public decimal Dress { get; set; }
-        public decimal Waist { get; set; }
-        public decimal Cup { get; set; }
-        public decimal Shoe { get; set; }
+        public Nullable<decimal> Bust { get; set; }
+        public Nullable<decimal> Hips { get; set; }
+        public Nullable<decimal> Dress { get; set; }
+        public Nullable<decimal> Waist { get; set; }
+        public Nullable<decimal> Cup { get; set; }
+        public Nullable<decimal> Shoe { get; set; }
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }

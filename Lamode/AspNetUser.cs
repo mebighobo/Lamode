@@ -34,23 +34,6 @@ namespace Lamode
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public Nullable<decimal> Height { get; set; }
-        public Nullable<decimal> Weight { get; set; }
-        public string ColorEyes { get; set; }
-        public string TellUsMore { get; set; }
-        public Nullable<bool> Experience { get; set; }
-        public Nullable<bool> NudePhoto { get; set; }
-        public string Nationality { get; set; }
-        public string ZipCode { get; set; }
-        public Nullable<decimal> Bust { get; set; }
-        public Nullable<decimal> Hips { get; set; }
-        public Nullable<decimal> Dress { get; set; }
-        public Nullable<decimal> Waist { get; set; }
-        public Nullable<decimal> Cup { get; set; }
-        public Nullable<decimal> Shoe { get; set; }
-        public string CompanyName { get; set; }
-        public string Website { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -58,5 +41,6 @@ namespace Lamode
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual AdditionalUserInfo AdditionalUserInfo { get; set; }
     }
 }
