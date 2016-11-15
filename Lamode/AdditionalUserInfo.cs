@@ -31,6 +31,7 @@ namespace Lamode
         public Nullable<decimal> Cup { get; set; }
         public Nullable<decimal> Shoe { get; set; }
         public string CompanyName { get; set; }
+        public string Gender { get; set; }
         public string Website { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

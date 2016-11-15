@@ -50,6 +50,7 @@ namespace Lamode.ViewModels
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
+        public string Gender { get; set; }
         public string Website { get; set; }
 
     }

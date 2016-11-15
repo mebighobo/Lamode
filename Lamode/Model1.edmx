@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="lamodeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="lamodeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -36,6 +36,7 @@
           <Property Name="Cup" Type="decimal" Precision="5" Scale="2" />
           <Property Name="Shoe" Type="decimal" Precision="5" Scale="2" />
           <Property Name="CompanyName" Type="varchar" MaxLength="25" />
+          <Property Name="Gender" Type="varchar" MaxLength="25" />
           <Property Name="Website" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="AspNetRoles">
@@ -107,7 +108,7 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
           <Property Name="create_date" Type="datetime" Nullable="false" />
           <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK__AdditionalUs__Id__5535A963">
+        <Association Name="FK__AdditionalUs__Id__5812160E">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="AdditionalUserInfo" Type="Self.AdditionalUserInfo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -193,7 +194,7 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
     [database_firewall_rules].[modify_date] AS [modify_date]
     FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__AdditionalUs__Id__5535A963" Association="Self.FK__AdditionalUs__Id__5535A963">
+          <AssociationSet Name="FK__AdditionalUs__Id__5812160E" Association="Self.FK__AdditionalUs__Id__5812160E">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AdditionalUserInfo" EntitySet="AdditionalUserInfo" />
           </AssociationSet>
@@ -214,7 +215,8 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lamodeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -227,6 +229,31 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
           <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdditionalUserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Height" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ColorEyes" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TellUsMore" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="Boolean" />
+          <Property Name="NudePhoto" Type="Boolean" />
+          <Property Name="Nationality" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Bust" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Hips" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Dress" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Waist" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Cup" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Shoe" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="CompanyName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK__AdditionalUs__Id__5812160E" FromRole="AdditionalUserInfo" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
@@ -273,10 +300,10 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AdditionalUserInfo" Relationship="Self.FK__AdditionalUs__Id__5812160E" FromRole="AspNetUsers" ToRole="AdditionalUserInfo" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="AdditionalUserInfo" Relationship="lamodeModel.FK__AdditionalUs__Id__5535A963" FromRole="AspNetUser" ToRole="AdditionalUserInfo" />
         </EntityType>
         <EntityType Name="database_firewall_rules">
           <Key>
@@ -294,6 +321,18 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <Association Name="FK__AdditionalUs__Id__5812160E">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="AdditionalUserInfo" Type="Self.AdditionalUserInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdditionalUserInfo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -328,11 +367,16 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
         </Association>
         <EntityContainer Name="lamodeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AdditionalUserInfoes" EntityType="Self.AdditionalUserInfo" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <AssociationSet Name="FK__AdditionalUs__Id__5812160E" Association="Self.FK__AdditionalUs__Id__5812160E">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AdditionalUserInfo" EntitySet="AdditionalUserInfoes" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -345,48 +389,7 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="AdditionalUserInfoes" EntityType="lamodeModel.AdditionalUserInfo" />
-          <AssociationSet Name="FK__AdditionalUs__Id__5535A963" Association="lamodeModel.FK__AdditionalUs__Id__5535A963">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AdditionalUserInfo" EntitySet="AdditionalUserInfoes" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="AdditionalUserInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="Height" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="ColorEyes" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TellUsMore" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Experience" Type="Boolean" />
-          <Property Name="NudePhoto" Type="Boolean" />
-          <Property Name="Nationality" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Bust" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Hips" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Dress" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Waist" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Cup" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="Shoe" Type="Decimal" Precision="5" Scale="2" />
-          <Property Name="CompanyName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="lamodeModel.FK__AdditionalUs__Id__5535A963" FromRole="AdditionalUserInfo" ToRole="AspNetUser" />
-        </EntityType>
-        <Association Name="FK__AdditionalUs__Id__5535A963">
-          <End Type="lamodeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="lamodeModel.AdditionalUserInfo" Role="AdditionalUserInfo" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AdditionalUserInfo">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -400,6 +403,31 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdditionalUserInfoes">
+            <EntityTypeMapping TypeName="lamodeModel.AdditionalUserInfo">
+              <MappingFragment StoreEntitySet="AdditionalUserInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ColorEyes" ColumnName="ColorEyes" />
+                <ScalarProperty Name="TellUsMore" ColumnName="TellUsMore" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="NudePhoto" ColumnName="NudePhoto" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Bust" ColumnName="Bust" />
+                <ScalarProperty Name="Hips" ColumnName="Hips" />
+                <ScalarProperty Name="Dress" ColumnName="Dress" />
+                <ScalarProperty Name="Waist" ColumnName="Waist" />
+                <ScalarProperty Name="Cup" ColumnName="Cup" />
+                <ScalarProperty Name="Shoe" ColumnName="Shoe" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -468,30 +496,6 @@ warning 6002: The table/view 'lamode.sys.database_firewall_rules' does not have 
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AdditionalUserInfoes">
-            <EntityTypeMapping TypeName="lamodeModel.AdditionalUserInfo">
-              <MappingFragment StoreEntitySet="AdditionalUserInfo">
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Shoe" ColumnName="Shoe" />
-                <ScalarProperty Name="Cup" ColumnName="Cup" />
-                <ScalarProperty Name="Waist" ColumnName="Waist" />
-                <ScalarProperty Name="Dress" ColumnName="Dress" />
-                <ScalarProperty Name="Hips" ColumnName="Hips" />
-                <ScalarProperty Name="Bust" ColumnName="Bust" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
-                <ScalarProperty Name="NudePhoto" ColumnName="NudePhoto" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="TellUsMore" ColumnName="TellUsMore" />
-                <ScalarProperty Name="ColorEyes" ColumnName="ColorEyes" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
