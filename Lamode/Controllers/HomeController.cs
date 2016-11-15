@@ -120,6 +120,7 @@ namespace Lamode.Controllers
             additionalUserInfo.Website = newUser.Website;
             additionalUserInfo.Weight = newUser.Weight;
             additionalUserInfo.ZipCode = newUser.ZipCode;
+            additionalUserInfo.Gender = newUser.Gender;
             
             try
             {
