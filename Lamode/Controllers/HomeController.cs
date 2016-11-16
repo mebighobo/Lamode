@@ -76,7 +76,7 @@ namespace Lamode.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisteredUser newUser,string registeredPeople)
+        public ActionResult Register(RegisteredUser newUser, string registeredPeople)
         {
             ViewBag.registeredPeople = registeredPeople;
             var userStore = new UserStore<IdentityUser>();
@@ -103,22 +103,18 @@ namespace Lamode.Controllers
             //for the rest of data from AspNetUser table
             AdditionalUserInfo additionalUserInfo = new AdditionalUserInfo();
             additionalUserInfo.Id = user.Id;
-            additionalUserInfo.Bust = newUser.Bust;
-            additionalUserInfo.ColorEyes = newUser.ColorEyes;
+           
             additionalUserInfo.CompanyName = newUser.CompanyName;
-            additionalUserInfo.Cup = newUser.Cup;
+            
             additionalUserInfo.DateOfBirth = newUser.DateOfBirth;
-            additionalUserInfo.Dress = newUser.Dress;
-            additionalUserInfo.Experience = newUser.Experience;
-            additionalUserInfo.Height = newUser.Height;
-            additionalUserInfo.Hips = newUser.Hips;
+            
+           
             additionalUserInfo.Nationality = newUser.Nationality;
-            additionalUserInfo.NudePhoto = newUser.NudePhoto;
-            additionalUserInfo.Shoe = newUser.Shoe;
+           
             additionalUserInfo.TellUsMore = newUser.TellUsMore;
-            additionalUserInfo.Waist = newUser.Waist;
+            
             additionalUserInfo.Website = newUser.Website;
-            additionalUserInfo.Weight = newUser.Weight;
+           
             additionalUserInfo.ZipCode = newUser.ZipCode;
             additionalUserInfo.Gender = newUser.Gender;
             
@@ -138,8 +134,35 @@ namespace Lamode.Controllers
                 }
             }
 
+            return RedirectToAction("MoreRegisterationForIndividuals", newUser);
+        }
+
+        public ActionResult MoreRegisterationForIndividuals(RegisteredUser newUser)
+        {
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+            var user = manager.Users.FirstOrDefault(u => u.UserName == newUser.UserName);
+            AdditionalUserInfo additionalUserInfo = new AdditionalUserInfo();
+            additionalUserInfo.Bust = newUser.Bust;
+            additionalUserInfo.ColorEyes = newUser.ColorEyes;
+           
+            additionalUserInfo.Cup = newUser.Cup;
+           
+            additionalUserInfo.Dress = newUser.Dress;
+            additionalUserInfo.Experience = newUser.Experience;
+            additionalUserInfo.Height = newUser.Height;
+            additionalUserInfo.Hips = newUser.Hips;
+            
+            additionalUserInfo.NudePhoto = newUser.NudePhoto;
+            additionalUserInfo.Shoe = newUser.Shoe;
+            
+            additionalUserInfo.Waist = newUser.Waist;
+           
+            additionalUserInfo.Weight = newUser.Weight;
+  
             return View();
         }
+
         [Authorize]
         public ActionResult SecureArea()
         {
