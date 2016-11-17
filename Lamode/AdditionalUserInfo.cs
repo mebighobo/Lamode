@@ -23,7 +23,11 @@ namespace Lamode
         public Nullable<bool> Experience { get; set; }
         public Nullable<bool> NudePhoto { get; set; }
         public string Nationality { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public string ZipCode { get; set; }
+        public string Gender { get; set; }
         public Nullable<decimal> Bust { get; set; }
         public Nullable<decimal> Hips { get; set; }
         public Nullable<decimal> Dress { get; set; }
@@ -31,7 +35,6 @@ namespace Lamode
         public Nullable<decimal> Cup { get; set; }
         public Nullable<decimal> Shoe { get; set; }
         public string CompanyName { get; set; }
-        public string Gender { get; set; }
         public string Website { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

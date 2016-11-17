@@ -178,6 +178,7 @@
     <Content Include="img\portfolio\thumbnails\1.jpg" />
     <Content Include="img\portfolio\thumbnails\4.jpg" />
     <Content Include="img\portfolio\thumbnails\5.jpg" />
+    <Content Include="js\CountryJS.js" />
     <Content Include="js\creative.js" />
     <Content Include="js\creative.min.js" />
     <Content Include="Model1.Context.tt">
@@ -225,7 +226,9 @@
     <Content Include="vendor\magnific-popup\magnific-popup.css" />
     <Content Include="vendor\scrollreveal\scrollreveal.js" />
     <Content Include="vendor\scrollreveal\scrollreveal.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalUserInfo.cs">
@@ -276,6 +279,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup1.cs" />
+    <Compile Include="State.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Login.cs" />
     <Compile Include="ViewModels\RegisteredUser.cs" />
   </ItemGroup>
@@ -342,6 +348,7 @@
     <Content Include="Views\Home\BeforeRegister.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\MoreRegisterationForIndividuals.cshtml" />
+    <Content Include="Views\Home\Country.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

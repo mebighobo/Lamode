@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lamode.ViewModels;
 using System.Data.Entity.Validation;
+using System.Globalization;
 
 namespace Lamode.Controllers
 {
@@ -70,6 +71,8 @@ namespace Lamode.Controllers
         [HttpGet]
         public ActionResult Register(string registeredPeople,string oneTwo)
         {
+            string country = RegionInfo.CurrentRegion.DisplayName;
+            ViewBag.country = country;
             ViewBag.registeredPeople = registeredPeople;
             ViewBag.oneTwo = oneTwo;
             return View();
@@ -89,7 +92,7 @@ namespace Lamode.Controllers
             
             IdentityResult result = manager.Create(identityUser, newUser.Password);
             lamodeEntities db = new lamodeEntities();
-           
+          
             if (result.Succeeded)
             {
                 var authenticationManager
@@ -110,7 +113,11 @@ namespace Lamode.Controllers
             
            
             additionalUserInfo.Nationality = newUser.Nationality;
-           
+            string country = RegionInfo.CurrentRegion.DisplayName;
+            ViewBag.country = country;
+        //    additionalUserInfo.Country = ViewBag.country;
+            additionalUserInfo.City = newUser.City;
+            additionalUserInfo.Province = newUser.Province;
             additionalUserInfo.TellUsMore = newUser.TellUsMore;
             
             additionalUserInfo.Website = newUser.Website;
@@ -175,6 +182,30 @@ namespace Lamode.Controllers
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Country()
+        {
+            ViewBag.Country = new[] {
+        new SelectListItem() { Text = "Venezuela", Value = "1" },
+        new SelectListItem() { Text = "United States", Value = "2" }
+            };
+            return View();
+        }
+        [HttpPost]
+        public ActionResult StatesByCountry(string countryId)
+        {
+            // Filter the states by country. For example:
+            lamodeEntities db = new lamodeEntities();
+            var states = (from s in db.States
+                          where s.CountryId == countryId
+                          select new
+                          {
+                              id = s.CountryId,
+                              state = s.Name
+                          }).ToArray();
+
+            return Json(states);
         }
     }
 }

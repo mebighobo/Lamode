@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ff0ece8a58f845a0bba7d6d0a9248182" Name="Diagram1">
+      <Diagram DiagramId="04f290936cf2481e9a9b79ac6ab3ea64" Name="Diagram1">
         <EntityTypeShape EntityType="lamodeModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="lamodeModel.AdditionalUserInfo" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="lamodeModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="lamodeModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="lamodeModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="lamodeModel.AspNetUser" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="lamodeModel.AspNetRole" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="lamodeModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lamodeModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="lamodeModel.AspNetUser" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="lamodeModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="lamodeModel.FK__AdditionalUs__Id__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="lamodeModel.FK__AdditionalUs__Id__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="lamodeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="lamodeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="lamodeModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="lamodeModel.State" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
