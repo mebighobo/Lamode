@@ -19,12 +19,29 @@ namespace Lamode.Controllers
 
         public ActionResult Index()
         {
+
             return View();
         }
 
         [HttpGet]
         public ActionResult Login()
         {
+            //This piece of code inject country name into the database
+            //lamodeEntities db = new lamodeEntities();
+            //int i = 1;
+            //foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            //{
+            //    var country = new RegionInfo(new CultureInfo(ci.Name, false).LCID);
+            //    string ri1 = country.DisplayName.ToString();
+            //    Country country1 = new Country();
+            //    country1.CountryName = ri1;
+            //    country1.CountryId = i;
+            //    db.Countries.Add(country1);
+            //    db.SaveChanges();
+            //    i++;
+
+            //}
+           
             return View();
         }
         [HttpPost]
@@ -105,6 +122,10 @@ namespace Lamode.Controllers
             var user = manager.Users.FirstOrDefault(u => u.UserName == newUser.UserName);
             //for the rest of data from AspNetUser table
             AdditionalUserInfo additionalUserInfo = new AdditionalUserInfo();
+
+           
+
+
             additionalUserInfo.Id = user.Id;
            
             additionalUserInfo.CompanyName = newUser.CompanyName;
@@ -184,29 +205,7 @@ namespace Lamode.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Country()
-        {
-            ViewBag.Country = new[] {
-        new SelectListItem() { Text = "Venezuela", Value = "1" },
-        new SelectListItem() { Text = "United States", Value = "2" }
-            };
-            return View();
-        }
-        [HttpPost]
-        public ActionResult StatesByCountry(string countryId)
-        {
-            // Filter the states by country. For example:
-            lamodeEntities db = new lamodeEntities();
-            var states = (from s in db.States
-                          where s.CountryId == countryId
-                          select new
-                          {
-                              id = s.CountryId,
-                              state = s.Name
-                          }).ToArray();
-            //Jason
-            return Json(states);
-        }
+        
     }
 }
 

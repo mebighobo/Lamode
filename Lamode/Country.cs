@@ -12,20 +12,18 @@ namespace Lamode
     using System;
     using System.Collections.Generic;
     
-    public partial class State
+    public partial class Country
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public State()
+        public Country()
         {
-            this.Cities = new HashSet<City>();
+            this.States = new HashSet<State>();
         }
     
-        public int StateId { get; set; }
-        public string StateName { get; set; }
-        public Nullable<int> CountryId { get; set; }
+        public int CountryId { get; set; }
+        public string CountryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<City> Cities { get; set; }
-        public virtual Country Country { get; set; }
+        public virtual ICollection<State> States { get; set; }
     }
 }

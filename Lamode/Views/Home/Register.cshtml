@@ -95,6 +95,19 @@
                         @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-lg-10">
+
+                        @Html.DropDownListFor(model => model.Country, new SelectList(new[]{"Select a country",
+                                                     }), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger country" })
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
