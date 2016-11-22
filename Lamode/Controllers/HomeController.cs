@@ -26,7 +26,7 @@ namespace Lamode.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            //This piece of code inject country name into the database
+            //This piece of code inject country name into the database and has to be run just one time
             //lamodeEntities db = new lamodeEntities();
             //int i = 1;
             //foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
@@ -135,8 +135,7 @@ namespace Lamode.Controllers
            
             additionalUserInfo.Nationality = newUser.Nationality;
             string country = RegionInfo.CurrentRegion.DisplayName;
-            ViewBag.country = country;
-        //    additionalUserInfo.Country = ViewBag.country;
+            ViewBag.country = country; 
             additionalUserInfo.City = newUser.City;
             additionalUserInfo.Province = newUser.Province;
             additionalUserInfo.TellUsMore = newUser.TellUsMore;
