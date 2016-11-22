@@ -75,6 +75,7 @@ namespace Lamode.Controllers
                     return RedirectToAction("SecureArea", "Home");
                 }
             }
+
             return View();
         }
 
