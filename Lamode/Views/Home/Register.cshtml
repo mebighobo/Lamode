@@ -5,7 +5,7 @@
 }
 
 <h2>Register</h2>
-
+<script src="~/js/countryStateCity.js"></script>
 
 @using (Html.BeginForm()) 
 {
@@ -89,30 +89,47 @@
 
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" , Value= ViewBag.country } })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                        <div align="center">
+                            <h1>JavaScript Country/State Selection Demo</h1>
+
+                            <hr />
+                            <br />Select Country:
+                            <select id="country" name="country"></select>
+                           
+                            <br />
+                            <script language="javascript">
+                                populateCountries("country", "state");
+                                populateCountries("country2");
+                            </script>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
                     </div>
                 </div>
 
-
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-lg-10">
-
-                        @Html.DropDownListFor(model => model.Country, new SelectList(new[]{"Select a country",
-                                                     }), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger country" })
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
+                        <div align="center">
+                            
+                            <br />State/Province:
+                            <select name="state" id="state"></select>
+
+
+                            <br />
+                            <script language="javascript">
+                                populateCountries("country", "state");
+                                populateCountries("country2");
+                            </script>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

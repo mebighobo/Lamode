@@ -72,9 +72,28 @@ namespace Lamode.Controllers
                     {
                         IsPersistent = false
                     }, identity);
-                    return RedirectToAction("SecureArea", "Home");
+                    lamodeEntities context = new lamodeEntities();
+                    var user = context.AspNetUsers.Where(u => u.UserName == login.UserName).FirstOrDefault();
+                    var role = manager.GetRoles(user.Id);
+
+                    if (role[0] == "Admin")
+                    {
+                        return RedirectToAction("AdminOnly", "Home");
+                    }
+                    else if (role[0] == "VIPUser")
+                    {
+                        return RedirectToAction("VIPUser", "Home");
+                    }
+                    else if (role[0] == "SpecialUser")
+                    {
+                        return RedirectToAction("SpecialUser", "Home");
+                    }
+
+
                 }
-            }
+                return RedirectToAction("SecureArea", "Home");
+                }
+            
 
             return View();
         }
@@ -132,13 +151,14 @@ namespace Lamode.Controllers
             additionalUserInfo.CompanyName = newUser.CompanyName;
             
             additionalUserInfo.DateOfBirth = newUser.DateOfBirth;
-            
-           
-            additionalUserInfo.Nationality = newUser.Nationality;
-            string country = RegionInfo.CurrentRegion.DisplayName;
-            ViewBag.country = country; 
+
+            //this gets current country from user
+            //additionalUserInfo.Nationality = newUser.Nationality;
+            //string country = RegionInfo.CurrentRegion.DisplayName;
+            //ViewBag.country = country; 
+            additionalUserInfo.Country = newUser.country;
             additionalUserInfo.City = newUser.City;
-            additionalUserInfo.Province = newUser.Province;
+            additionalUserInfo.Province = newUser.state;
             additionalUserInfo.TellUsMore = newUser.TellUsMore;
             
             additionalUserInfo.Website = newUser.Website;
@@ -205,7 +225,80 @@ namespace Lamode.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        
+        [HttpGet]
+        public ActionResult AddRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddRole(AspNetRole role)
+        {
+            lamodeEntities context = new lamodeEntities();
+            context.AspNetRoles.Add(role);
+            context.SaveChanges();
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AddUserToRole()
+        {
+            lamodeEntities context = new lamodeEntities();
+            AspNetRole aspNetRole = new AspNetRole();
+            AspNetUser aspNetUser = new AspNetUser();
+            var list = context.AspNetRoles.ToList();
+            var listUser = context.AspNetUsers.ToList();
+            ViewBag.RoleList = list.ToList();
+            ViewBag.UserList = listUser.ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddUserToRole(string userName, string Id)
+        {
+            lamodeEntities context = new lamodeEntities();
+
+            AspNetUser user = context.AspNetUsers
+                             .Where(u => u.UserName == userName).FirstOrDefault();
+            AspNetRole role = context.AspNetRoles
+                             .Where(r => r.Id == Id).FirstOrDefault();
+
+                user.AspNetRoles.Add(role);
+                context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Admin")]
+        // To allow more than one role access use syntax like the following:
+        // [Authorize(Roles="Admin, Staff")]
+        public ActionResult AdminOnly()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "VIPUser")]
+        // To allow more than one role access use syntax like the following:
+        // [Authorize(Roles="Admin, Staff")]
+        public ActionResult VIPUser()
+        {
+            return View();
+        }
+        [Authorize(Roles = "SpecialUser")]
+        // To allow more than one role access use syntax like the following:
+        // [Authorize(Roles="Admin, Staff")]
+        public ActionResult SpecialUser()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User")]
+        // To allow more than one role access use syntax like the following:
+        // [Authorize(Roles="Admin, Staff")]
+        public ActionResult NormalUser()
+        {
+            return RedirectToAction("SecureArea");
+        }
+
+
+
+
     }
 }
 
