@@ -11,12 +11,36 @@ using System.Web.Mvc;
 using Lamode.ViewModels;
 using System.Data.Entity.Validation;
 using System.Globalization;
+using Lamode.Models;
+using System.Threading.Tasks;
+using System.Net.Http;
+using HtmlAgilityPack;
 
 namespace Lamode.Controllers
 {
     public class HomeController : Controller
     {
+        public static async Task StartCrawlerAsync()
+        {
+            var url = "http://www.imdb.com/imdbpicks/celebrity-doppelgangers/rg1875155712?page=1&pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=&pf_rd_r=0Y883GKBY1B31SSGVWA7&pf_rd_s=center-3&pf_rd_t=15081&pf_rd_i=&ref_=pks_mg_mi_mi_sm";
+            var httpClient = new HttpClient();
+            var html = await httpClient.GetStringAsync(url);
+            //HTML Agility Pack helps us to pars html and enables the application to read DOM.
+            //We install it from NuGet Package
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(html);
+            var aTags = htmlDocument.DocumentNode.Descendants("a").
+               Where(node => node.GetAttributeValue("itemprop", "").
+               Equals("thumbnailUrl")).ToList();
 
+            foreach(var a in aTags)
+            {
+                var title = a.GetAttributeValue("title", "");
+                var imageUrl = a.Descendants("img").FirstOrDefault().ChildAttributes("src").FirstOrDefault().Value;
+                var link = a.GetAttributeValue("href", "");
+            }
+
+        }
         public ActionResult Index()
         {
 
@@ -97,10 +121,12 @@ namespace Lamode.Controllers
 
             return View();
         }
-
+        
         [HttpGet]
         public ActionResult BeforeRegister()
         {
+
+            StartCrawlerAsync();
             return View();
         }
        
@@ -271,6 +297,7 @@ namespace Lamode.Controllers
         // [Authorize(Roles="Admin, Staff")]
         public ActionResult AdminOnly()
         {
+            
             return View();
         }
 
